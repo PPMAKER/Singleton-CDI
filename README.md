@@ -1,2 +1,5 @@
 # Singleton-CDI
 Projeto criado utilizando do Quarkus e seguindo em partes a video aula do Prof Manoel 
+------
+* O atributo __config__ possui um ciclo de vida controlado pelo CDI, visto que ele é um atributo injetado. Por outro lado não é o que acontece com o parâmetro __newConfig__, visto que ao simplemente atribuir o newConfig a config, __perde-se o sentido do Singleton__ de ter apenas uma única instância.
+* Para testar tal evento, cria-se uma nova classe chamada __RelatorioResource__ como uma cópia de __ConfigResource__, apenas alterando o __@Path("/relatorio")__. E ao executar nota-se que o Singleton deixa de funcionar. O Swagger continua funcionando normalmente junto com a classe __RelatorioResource__, mas ao executar o __GET__ é criado um novo objeto com os parâmetros iniciais. Assim, não funcionando o Singleton e retornando um __código HTTP 204__ que demonstra que o servidor atendeu à solicitação com êxito, mas, não há conteúdo adicional a ser enviado no corpo da carga de resposta
